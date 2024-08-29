@@ -8,8 +8,6 @@ Setup
         
 .. code-block:: php
     
-    <?php
-    
     require 'vendor/autoload.php';
     
     use Onetoweb\DpdShipper\Client;
@@ -29,7 +27,7 @@ Setup
     // example file to store token data in
     $tokenFile = '/path/to/token.txt';
     
-    // store acces token if a new token is requested
+    // store access token if a new token is requested
     $client->setUpdateTokenCallback(function(AccessToken $accessToken) use ($tokenFile) {
         
         // example store token in file
