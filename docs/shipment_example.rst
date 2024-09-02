@@ -108,7 +108,6 @@ DPD Classic Predict is identical to a regular DPD Classic. It sends a Predict me
     ]);
 
 
-
 DPD Classic Predict B2C
 ```````````````````````
 
@@ -164,6 +163,9 @@ DPD Classic Predict is identical to a regular DPD Classic. It sends a Predict me
 DPD Parcelshop/2Shop
 ````````````````````
 
+This looks almost identical to a regular DPD Business shipment.
+In order to turn it into a shipment via parcelshop, you have to add the parcelShopDelivery segment in the productAndServiceData section.
+
 .. code-block:: php
     
     $result = $client->shipment->storeOrders([
@@ -217,6 +219,9 @@ DPD Parcelshop/2Shop
 Shop Return
 ```````````
 
+A Return shipment is almost identical to a regular DPD Business.
+You have to add a return segment to the parcels section and set the value to true.
+
 .. code-block:: php
     
     $result = $client->shipment->storeOrders([
@@ -248,7 +253,7 @@ Shop Return
             ],
             'parcels' => [
                 'customerReferenceNumber1' => 'Box 1234',
-                'returns' => 'true'
+                'returns' => true
             ],
             'productAndServiceData' => [
                 'orderType' => 'consignment'
@@ -259,6 +264,9 @@ Shop Return
 
 DPD ParcelLetter
 ````````````````
+
+Similar to a regular DPD Home shipment.
+Use value PL in the product segment under generalShipmentData.
 
 .. code-block:: php
     
@@ -311,6 +319,10 @@ DPD ParcelLetter
 DPD 10:00, 12:00 and Guarantee Shipment
 ```````````````````````````````````````
 
+Express shipments look almost identical to regular DPD Business shipments.
+These products are determined with in the product segment under generalShipmentData.
+Use values E10, E12 or E18 for DPD 10:00, DPD 12:00 or DPD Guarantee respectively.
+
 .. code-block:: php
     
     $result = $client->shipment->storeOrders([
@@ -355,6 +367,9 @@ DPD 10:00, 12:00 and Guarantee Shipment
 Saturday Delivery Shipment
 ``````````````````````````
 
+Saturday delivery shipments are almost identical to regular DPD Business shipments.
+You only have to add a flag saturdayDelivery to the productAndServiceData section and set it to true.
+
 .. code-block:: php
     
     $result = $client->shipment->storeOrders([
@@ -390,7 +405,7 @@ Saturday Delivery Shipment
             ],
             'productAndServiceData' => [
                 'orderType' => 'consignment',
-                'saturdayDelivery' => 'true'
+                'saturdayDelivery' => true
             ]
         ]
     ]);
@@ -398,6 +413,9 @@ Saturday Delivery Shipment
 
 Tyres (bulk) Shipment
 `````````````````````
+
+A Bulk Tyres shipment is almost identical to a regular DPD Business.
+You have to add a tyres segment to the productAndServiceData section and set the value to true.
 
 .. code-block:: php
     
@@ -434,7 +452,7 @@ Tyres (bulk) Shipment
             ],
             'productAndServiceData' => [
                 'orderType' => 'consignment',
-                'tyres' => 'true'
+                'tyres' => true
             ]
         ]
     ]);
@@ -442,6 +460,9 @@ Tyres (bulk) Shipment
 
 Ex-Works Shipment
 `````````````````
+
+Ex-Works shipments are almost identical to the regular DPD Business shipment.
+You just have to add a exWorksDelivery to productAndServiceData and set it to true.
 
 .. code-block:: php
     
@@ -478,7 +499,7 @@ Ex-Works Shipment
             ],
             'productAndServiceData' => [
                 'orderType' => 'consignment',
-                'exWorksDelivery' => 'true'
+                'exWorksDelivery' => true
             ]
         ]
     ]);
@@ -811,6 +832,9 @@ International non-EU Shipments B2B with several different items
 Pickup Orders
 `````````````
 
+This is a separate call from your Shipment calls to assure a driver will come to one of your official pickup addresses
+to collect the parcels you have prepared for a shipment in case you do not have a daily pickup agreed upon.
+
 .. code-block:: php
     
     $result = $client->shipment->storeOrders([
@@ -852,6 +876,14 @@ Pickup Orders
 Collection Request Orders
 `````````````````````````
 
+To enter a Collection Request via API, follow the structure below.
+
+Three addresses are identified, be sure they are entered in the right namespaces
+
+* Sender: This is your data, our customer, who orders the parcel collection to take place at point A and be delivered to point B. This address is not the place where the parcel will be picked up nor delivered. The fields are mandatory but the data in these namespaces can be masked would you like to do so.
+* Recipient: This is the location where the parcel will be delivered.
+* Collection Request Address: This is the location where the driver will present himself to pick up the parcel. The driver will bring the label himself and attach it to the parcel at pickup.
+
 .. code-block:: php
     
     $result = $client->shipment->storeOrders([
@@ -883,7 +915,7 @@ Collection Request Orders
             'parcels' => [
                 'customerReferenceNumber1' => 'TEST parcel 1',
                 'weight' => '100',
-                'printInfo1OnParcelLabel' => 'true',
+                'printInfo1OnParcelLabel' => true,
                 'info1' => 'Return Item 1',
                 'info2' => '123456789'
             ],
