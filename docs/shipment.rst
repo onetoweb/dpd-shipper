@@ -510,5 +510,9 @@ Store Order Example With All Possible Values
     ]);
 
 
+More Shipment Examples
+``````````````````````
+`More shipment examples <shipment_example.rst>`_
+
 
 `Back to top <#top>`_
