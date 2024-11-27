@@ -50,7 +50,7 @@ class AccessToken
      */
     public function isExpired(): bool
     {
-        return (bool) $this->expires < new \DateTime();
+        return (bool) ($this->expires < new DateTime());
     }
     
     /**
