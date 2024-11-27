@@ -7,3 +7,7 @@
 ## [1.0.1] - 2024-09-02
 
 - Added more shipment examples to the documentation
+
+## [1.0.2] - 2024-11-27
+
+- Bugfix: expiration check on access token
