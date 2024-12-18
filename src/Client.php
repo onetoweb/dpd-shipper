@@ -5,7 +5,6 @@ namespace Onetoweb\DpdShipper;
 use Onetoweb\DpdShipper\Endpoint\Endpoints;
 use Onetoweb\DpdShipper\AccessToken;
 use Onetoweb\DpdShipper\Exception\{
-    UpdateTokenCallbackException,
     SoapErrorException,
     LoginException
 };
@@ -199,7 +198,6 @@ class Client
     }
     
     /**
-     * @throws UpdateTokenCallbackException if no updateTokenCallback is set
      * @throws LoginException if login attempt fails
      * @throws SoapErrorException if the soap fault occurs and contains a error message 
      * 
@@ -207,10 +205,6 @@ class Client
      */
     public function login(): void
     {
-        if ($this->updateTokenCallback === null) {
-            throw new UpdateTokenCallbackException('updateTokenCallback not set, use Onetoweb\DpdShipper::setUpdateTokenCallback');
-        }
-        
         // get soap client
         $soapClient = $this->getSoapClient($this->getWsdl(self::WSDL_SERVICE_LOGIN));
         
@@ -242,10 +236,14 @@ class Client
         
         // build access token
         $expires = DateTime::createFromFormat(self::DATEFORMAT_EXPIRED, $response->return->authTokenExpires);
-        $accessToken = new AccessToken($response->return->authToken, $expires);
+        
+        // build access token
+        $this->accessToken = new AccessToken($response->return->authToken, $expires);
         
         // update token callback
-        ($this->updateTokenCallback)($accessToken);
+        if ($this->updateTokenCallback !== null) {
+            ($this->updateTokenCallback)($this->accessToken);
+        }
     }
     
     /**
@@ -327,6 +325,7 @@ class Client
             }
             
             throw $soapFault;
+            
         }
         
         // turn object reponse to array
