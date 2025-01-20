@@ -16,3 +16,7 @@
 
 - Bugfix: update the internal state when refreshing the access token
 - Deprecated: UpdateTokenCallbackException is no longer thrown since setting the update token callback is no longer required
+
+## [1.0.4] - 2024-01-20
+
+- Bugfix: use correct live url if test modus is disabled

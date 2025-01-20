@@ -123,7 +123,7 @@ class Client
      */
     public function getBaseWsdl(): string
     {
-        return $this->testModus ? self::BASE_WSDL_TEST : self::BASE_WSDL_TEST;
+        return $this->testModus ? self::BASE_WSDL_TEST : self::BASE_WSDL_LIVE;
     }
     
     /**
