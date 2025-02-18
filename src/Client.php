@@ -237,6 +237,11 @@ class Client
         // build access token
         $expires = DateTime::createFromFormat(self::DATEFORMAT_EXPIRED, $response->return->authTokenExpires);
         
+        // expires 5 minute fallback
+        if (!$expires instanceof DateTime) {
+            $expires = (new DateTime())->modify('+5 minute');
+        }
+        
         // build access token
         $this->accessToken = new AccessToken($response->return->authToken, $expires);
         
@@ -325,7 +330,6 @@ class Client
             }
             
             throw $soapFault;
-            
         }
         
         // turn object reponse to array

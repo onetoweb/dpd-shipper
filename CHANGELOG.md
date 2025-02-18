@@ -20,3 +20,7 @@
 ## [1.0.4] - 2024-01-20
 
 - Bugfix: use correct live url if test modus is disabled
+
+## [1.0.5] - 2025-02-18
+
+- AccessToken Expires DateTime 5 minute fallback
