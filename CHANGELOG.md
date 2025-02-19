@@ -24,3 +24,7 @@
 ## [1.0.5] - 2025-02-18
 
 - AccessToken Expires DateTime 5 minute fallback
+
+## [1.0.6] - 2025-02-19
+
+- Get fault message from soap fault if one exists

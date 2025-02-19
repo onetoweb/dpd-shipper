@@ -179,6 +179,10 @@ class Client
             }
         }
         
+        if (isset($soapFault->detail->faults->message)) {
+            return $soapFault->detail->faults->message;
+        }
+        
         return null;
     }
     
