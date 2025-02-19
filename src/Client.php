@@ -29,7 +29,7 @@ class Client
      * Wsdl services.
      */
     public const WSDL_SERVICE_LOGIN = 'LoginServiceV21.wsdl';
-    public const WSDL_SERVICE_SHIPMENT = 'ShipmentServiceV34.wsdl';
+    public const WSDL_SERVICE_SHIPMENT = 'ShipmentServiceV35.wsdl';
     public const WSDL_SERVICE_PARCEL_SHOP_FINDER = 'ParcelShopFinderServiceV50.wsdl';
     public const WSDL_SERVICE_PARCEL_LIFECYCLE = 'ParcelLifecycleServiceV20.wsdl';
     
