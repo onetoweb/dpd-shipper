@@ -32,3 +32,7 @@
 ## [1.0.7] - 2025-02-19
 
 - Update ShipmentService to V35
+
+## [1.0.8] - 2026-07-07
+
+- Change ParcelLifecycleServiceV20 to ParcelLifeCycleServiceV20

@@ -24,14 +24,14 @@ class Client
      */
     public const BASE_WSDL_TEST = 'https://shipperadmintest.dpd.nl/PublicApi/WSDL/';
     public const BASE_WSDL_LIVE = 'https://wsshipper.dpd.nl/soap/WSDL/';
-    
+
     /**
      * Wsdl services.
      */
     public const WSDL_SERVICE_LOGIN = 'LoginServiceV21.wsdl';
     public const WSDL_SERVICE_SHIPMENT = 'ShipmentServiceV35.wsdl';
     public const WSDL_SERVICE_PARCEL_SHOP_FINDER = 'ParcelShopFinderServiceV50.wsdl';
-    public const WSDL_SERVICE_PARCEL_LIFECYCLE = 'ParcelLifecycleServiceV20.wsdl';
+    public const WSDL_SERVICE_PARCEL_LIFECYCLE = 'ParcelLifeCycleServiceV20.wsdl';
     
     /**
      * Base types url.
@@ -236,6 +236,7 @@ class Client
             }
             
             throw $soapFault;
+            
         }
         
         // build access token
@@ -334,6 +335,7 @@ class Client
             }
             
             throw $soapFault;
+            
         }
         
         // turn object reponse to array
